@@ -15,7 +15,3 @@ Object.defineProperty(global, "localStorage", {
 });
 
 global.fetch = jest.fn();
-
-beforeEach(() => {
-  jest.clearAllMocks();
-});
