@@ -11,6 +11,10 @@ describe("TemplateStore", () => {
     it("should initialize with a counter of 0", () => {
       expect(store.get("counter")).toBe(0);
     });
+
+    it("should return the full state with getState", () => {
+      expect(store.getState()).toEqual({ counter: 0 });
+    });
   });
 
   describe("addCounter", () => {
@@ -69,6 +73,52 @@ describe("TemplateStore", () => {
       store.addCounter(7);
       store.cleanup();
       expect(store.get("counter")).toBe(0);
+    });
+  });
+
+  describe("subscribe", () => {
+    it("should call the listener when the counter changes", () => {
+      const mockListener = jest.fn();
+      store.subscribe("counter", mockListener);
+      store.addCounter(1);
+      expect(mockListener).toHaveBeenCalledTimes(1);
+      expect(mockListener).toHaveBeenCalledWith(1);
+    });
+
+    it("should not call the listener when the counter value does not change", () => {
+      const mockListener = jest.fn();
+      store.subscribe("counter", mockListener);
+      store.setState({ counter: 0 });
+      expect(mockListener).not.toHaveBeenCalled();
+    });
+
+    it("should call multiple listeners for the same key", () => {
+      const mockListener1 = jest.fn();
+      const mockListener2 = jest.fn();
+      store.subscribe("counter", mockListener1);
+      store.subscribe("counter", mockListener2);
+      store.addCounter(1);
+      expect(mockListener1).toHaveBeenCalledWith(1);
+      expect(mockListener2).toHaveBeenCalledWith(1);
+    });
+
+    it("should stop calling the listener after unsubscribing", () => {
+      const mockListener = jest.fn();
+      const unsubscribe = store.subscribe("counter", mockListener);
+      unsubscribe();
+      store.addCounter(1);
+      expect(mockListener).not.toHaveBeenCalled();
+    });
+
+    it("should only unsubscribe the correct listener when multiple are registered", () => {
+      const mockListener1 = jest.fn();
+      const mockListener2 = jest.fn();
+      const unsubscribe1 = store.subscribe("counter", mockListener1);
+      store.subscribe("counter", mockListener2);
+      unsubscribe1();
+      store.addCounter(1);
+      expect(mockListener1).not.toHaveBeenCalled();
+      expect(mockListener2).toHaveBeenCalledWith(1);
     });
   });
 

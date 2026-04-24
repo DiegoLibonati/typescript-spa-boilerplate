@@ -54,12 +54,7 @@ describe("Link", () => {
     });
 
     it("should render with empty content when children is not provided", () => {
-      const element = Link({
-        id: "link-test",
-        href: "/about",
-        ariaLabel: "Go to about page",
-      });
-      document.body.appendChild(element);
+      renderComponent({ children: undefined });
       expect(screen.getByRole("link")).toHaveTextContent("");
     });
   });
@@ -94,13 +89,7 @@ describe("Link", () => {
 
   describe("target and rel", () => {
     it("should default target to _blank when not provided", () => {
-      const element = Link({
-        id: "link-test",
-        href: "/about",
-        ariaLabel: "Go to about page",
-        children: "About",
-      });
-      document.body.appendChild(element);
+      renderComponent({ target: undefined });
       expect(screen.getByRole("link")).toHaveAttribute("target", "_blank");
     });
 

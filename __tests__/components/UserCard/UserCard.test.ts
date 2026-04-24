@@ -43,10 +43,7 @@ describe("UserCard", () => {
 
     it("should render the username with an @ prefix", () => {
       renderComponent();
-      const usernameEl = document.querySelector<HTMLParagraphElement>(
-        ".user-card__username"
-      );
-      expect(usernameEl).toHaveTextContent("@johndoe");
+      expect(screen.getByText("@johndoe")).toBeInTheDocument();
     });
 
     it("should render a mailto link for the email", () => {
@@ -76,10 +73,7 @@ describe("UserCard", () => {
 
     it("should render the company name", () => {
       renderComponent();
-      const companyEl = document.querySelector<HTMLParagraphElement>(
-        ".user-card__company"
-      );
-      expect(companyEl).toHaveTextContent("Doe Inc");
+      expect(screen.getByText(/Doe Inc/)).toBeInTheDocument();
     });
   });
 });

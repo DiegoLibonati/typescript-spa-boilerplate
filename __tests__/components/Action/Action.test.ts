@@ -57,24 +57,14 @@ describe("Action", () => {
     });
 
     it("should use only the action class when no className is provided", () => {
-      const element = Action({
-        id: "action-btn",
-        ariaLabel: "Click me",
-        onClick: mockOnClick,
-      });
-      document.body.appendChild(element);
+      renderComponent({ className: undefined });
       const button = screen.getByRole("button");
       expect(button).toHaveClass("action");
       expect(button.className).toBe("action");
     });
 
     it("should render with empty content when children is not provided", () => {
-      const element = Action({
-        id: "action-btn",
-        ariaLabel: "Click me",
-        onClick: mockOnClick,
-      });
-      document.body.appendChild(element);
+      renderComponent({ children: undefined });
       expect(screen.getByRole("button")).toHaveTextContent("");
     });
   });
