@@ -1,4 +1,4 @@
-# TypescriptViteBoilerplate
+# Typescript Vite Boilerplate
 
 ## Educational Purpose
 
@@ -17,7 +17,7 @@ The application will open automatically at `http://localhost:3000`
 
 ## Description
 
-**TypescriptViteBoilerplate** is a starting point for building Single Page Applications with **Vanilla TypeScript** and **Vite**, without frameworks or runtime dependencies.
+**Typescript Vite Boilerplate** is a starting point for building Single Page Applications with **Vanilla TypeScript** and **Vite**, without frameworks or runtime dependencies.
 
 **The problem it solves:** every time you start a vanilla TypeScript SPA from scratch you end up making the same decisions — how to handle routing, how to manage state, how to structure components, how to wire up linting, formatting, and tests. This boilerplate makes those decisions once so you can clone it and go straight to writing product logic.
 

@@ -1,7 +1,7 @@
 {
-  "name": "TypescriptViteBoilerplate",
-  "short_name": "TypescriptViteBoilerplate",
-  "description": "TypescriptViteBoilerplate is a starting point for building Single Page Applications with **Vanilla TypeScript** and **Vite**, without frameworks or runtime dependencies.",
+  "name": "Typescript Vite Boilerplate",
+  "short_name": "Typescript Vite Boilerplate",
+  "description": "Typescript Vite Boilerplate is a starting point for building Single Page Applications with Vanilla TypeScript and Vite, without frameworks or runtime dependencies.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
