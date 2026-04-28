@@ -31,7 +31,7 @@ const UsersPage = (): Page => {
   const linkHome = Link({
     id: "link-home",
     ariaLabel: "Navigate to Home page",
-    href: "/home",
+    href: "/",
     children: "Go to Home Page",
     target: "_self",
   });

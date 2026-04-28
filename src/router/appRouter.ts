@@ -10,7 +10,7 @@ import UsersPage from "@/pages/UsersPage/UsersPage";
 
 import envs from "@/constants/envs";
 
-const PRINCIPAL_ROUTE = "/home";
+const PRINCIPAL_ROUTE = "/";
 const ERROR_ROUTE = "/error";
 const REDIRECT_IF_ROUTE_NOT_EXISTS = envs.redirectIfRouteNotExists;
 

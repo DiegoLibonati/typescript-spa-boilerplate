@@ -322,7 +322,7 @@ export default Action;
 
 ```typescript
 const routes: Route[] = [
-  { path: "/home", component: HomePage },
+  { path: "/", component: HomePage },
   { path: "/about", component: AboutPage },
   { path: "/products/:id", component: ProductPage },
 ];
