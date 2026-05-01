@@ -16,8 +16,12 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       port: 3000,
-      open: true,
+      open: false,
+      host: "0.0.0.0",
       strictPort: true,
+      watch: {
+        usePolling: true,
+      },
       proxy: {
         "/users": {
           target: env.VITE_TEMPLATE_API_URL,

@@ -1,0 +1,18 @@
+services:
+  boilerplate-app:
+    build:
+      context: ./
+      dockerfile: Dockerfile.development
+    restart: unless-stopped
+    volumes:
+      - .:/home/app
+      - /home/app/node_modules
+    ports:
+      - 3000:3000
+    networks:
+      - boilerplate-net
+    stdin_open: true
+    tty: true
+
+networks:
+  boilerplate-net:

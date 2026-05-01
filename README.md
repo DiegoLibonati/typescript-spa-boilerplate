@@ -106,6 +106,46 @@ For coverage report:
 npm run test:coverage
 ```
 
+## Production
+
+The project includes Docker support for both development and production environments.
+
+### Development
+
+Mounts the project directory as a volume so changes are reflected immediately (hot reload).
+
+```bash
+docker compose -f dev.docker-compose.yml up --build
+```
+
+The app will be available at `http://localhost:3000`.
+
+### Production
+
+Multi-stage build: Node 22 compiles the TypeScript and generates the static bundle, then Nginx serves it. The final image contains no Node.js or source code.
+
+```bash
+docker compose -f prod.docker-compose.yml up --build -d
+```
+
+The app will be available at `http://localhost:3000`.
+
+### Production Setup Details
+
+| Aspect           | Detail                                                                               |
+| ---------------- | ------------------------------------------------------------------------------------ |
+| Builder image    | `node:22-alpine` — compiles and bundles via `npm run build`                          |
+| Runner image     | `nginx:stable-alpine` — serves only the static `dist/` output                        |
+| Non-root user    | `appuser` (UID 1001) — nginx master and worker processes run without root privileges |
+| Internal port    | `8080` — non-root processes cannot bind to ports below 1024                          |
+| Gzip             | Enabled for JS, CSS, JSON, SVG and plain text                                        |
+| Static assets    | Cached for 1 year (`Cache-Control: immutable`)                                       |
+| HTML / routes    | `no-cache` — ensures users always get the latest `index.html`                        |
+| SPA fallback     | All unknown paths serve `index.html` to support client-side routing                  |
+| Security headers | `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`                       |
+| Logs             | Redirected to stdout/stderr for Docker log collection                                |
+| Healthcheck      | HTTP probe every 30s — restarts the container after 3 consecutive failures           |
+
 ## Env Keys
 
 | Key                                 | Description                                                                        |
