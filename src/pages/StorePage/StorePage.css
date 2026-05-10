@@ -4,7 +4,7 @@
 
 .store-page .title {
   color: var(--color-white);
-  font-size: 5rem;
+  font-size: clamp(2rem, 10vw, 5rem);
 }
 
 .store-page .links,
@@ -13,11 +13,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
   gap: 1rem;
   width: 100%;
   height: auto;
   margin-top: 1rem;
+}
+
+.store-page .links {
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.store-page .actions,
+.store-page .counter {
+  flex-direction: row;
+}
+
+@media (min-width: 640px) {
+  .store-page .links {
+    flex-direction: row;
+    align-items: center;
+  }
 }
 
 .store-page .counter {

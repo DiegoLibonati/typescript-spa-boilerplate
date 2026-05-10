@@ -4,7 +4,7 @@
 
 .not-found-page .title {
   color: var(--color-white);
-  font-size: 5rem;
+  font-size: clamp(2rem, 10vw, 5rem);
 }
 
 .not-found-page .description {

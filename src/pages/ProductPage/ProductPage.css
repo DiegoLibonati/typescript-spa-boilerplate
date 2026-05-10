@@ -4,7 +4,7 @@
 
 .product-page .title {
   color: var(--color-white);
-  font-size: 5rem;
+  font-size: clamp(2rem, 10vw, 5rem);
 }
 
 .product-page .links,
@@ -12,9 +12,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
   gap: 1rem;
   width: 100%;
   height: auto;
   margin-top: 1rem;
+}
+
+.product-page .links {
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.product-page .actions {
+  flex-direction: row;
+}
+
+@media (min-width: 640px) {
+  .product-page .links {
+    flex-direction: row;
+    align-items: center;
+  }
 }
